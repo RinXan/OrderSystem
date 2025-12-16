@@ -6,7 +6,7 @@
         {
             try
             {
-                var product = new Product("Laptop", 1150);
+                var product = new Product("Laptop", 1250);
                 Console.WriteLine(product);
             }
             catch (Exception ex) 
