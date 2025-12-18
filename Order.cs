@@ -26,9 +26,9 @@ namespace OrderSystem
             Products.Add(product);
         }
 
-        public decimal CalculateTotal(decimal deliveryPrice = 0)
+        public decimal CalculateProductsTotal()
         {
-            decimal total = deliveryPrice;
+            decimal total = 0;
 
             foreach (Product product in Products)
             {
@@ -38,17 +38,22 @@ namespace OrderSystem
             return total;
         }
 
+        public virtual decimal CalculateTotal()
+        {
+            return CalculateProductsTotal();
+        }
+
         public void SetPaymentMethod(IPaymentMethod method)
         {
             if (method is null) throw new ArgumentNullException(nameof(method), "Payment method hasn't set");
             PaymentMethod = method;
         }
 
-        public bool Pay(decimal deliveryPrice = 0)
+        public bool Pay()
         {
             if (PaymentMethod is null) throw new InvalidOperationException("Payment method is not set");
 
-            return PaymentMethod.Pay(CalculateTotal(deliveryPrice)); ;
+            return PaymentMethod.Pay(CalculateTotal()); ;
         }
 
         public abstract void Process();

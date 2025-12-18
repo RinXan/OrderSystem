@@ -6,17 +6,24 @@
         {
             try
             {
-                var product = new Product("Laptop", 1250);
+                var product = new Product("Laptop", 1000);
                 var product2 = new Product("Laptop2", 5000);
 
-                PickupOrder pickupOrder = new PickupOrder(121);
-                CashPayment cashPayment = new CashPayment();
+                Order order = new PickupOrder(1);
+                Order order2 = new DeliveryOrder(2, 99);
 
-                pickupOrder.AddProduct(product);
-                pickupOrder.AddProduct(product2);
-                pickupOrder.Process();
-                pickupOrder.SetPaymentMethod(cashPayment);
-                pickupOrder.Pay();
+                order.AddProduct(product);
+                order2.AddProduct(product);
+                order2.AddProduct(product2);
+
+                order.Process();
+                order2.Process();
+
+                order.SetPaymentMethod(new CashPayment());
+                order2.SetPaymentMethod(new CardPayment());
+
+                order.Pay();
+                order2.Pay();
             }
             catch (Exception ex) 
             {

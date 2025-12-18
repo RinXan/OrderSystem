@@ -16,13 +16,18 @@ namespace OrderSystem
         }
         public override void Process()
         {
-            decimal productsTotal = CalculateTotal();
+            decimal productsTotal = CalculateProductsTotal();
             decimal finalPrice = productsTotal + DeliveryPrice;
 
             Console.WriteLine($"Order #{Id}");
             Console.WriteLine($"Products total: {productsTotal}");
             Console.WriteLine($"Delivery price: {DeliveryPrice}");
             Console.WriteLine($"Final total: {finalPrice}");
+        }
+
+        public override decimal CalculateTotal()
+        {
+            return base.CalculateTotal() + DeliveryPrice;
         }
     }
 }
