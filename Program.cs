@@ -6,7 +6,7 @@
         {
             try
             {
-                string filePath = "D:\\practise\\c#\\OrderSystem\\products.txt";
+                string filePath = "D:\\practise\\c#\\OrderSystem\\Infrastructure\\products.txt";
                 
                 IProductRepository productRepository = new FileProductRepository(filePath);
 
