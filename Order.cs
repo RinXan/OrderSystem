@@ -1,23 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OrderSystem
+﻿namespace OrderSystem
 {
     public abstract class Order
     {
         public int Id { get; }
         protected List<Product> Products;
-
         protected IPaymentMethod PaymentMethod;
 
         protected Order(int id)
         {
-            if (id < 1) throw new ArgumentOutOfRangeException(nameof(id), "ID must be greater than 0");
-            Id = id;
+            if (id <= 0) throw new ArgumentOutOfRangeException(nameof(id), "id must be greater then 0");
             Products = new List<Product>();
+            Id = id;
         }
 
         public void AddProduct(Product product) 

@@ -17,8 +17,8 @@ namespace OrderSystem
 
         public void AddProductToOrder(Order order, string name)
         {
-            if (order is null) throw new ArgumentException("Product name is empty", nameof(name)); ;
-            if (string.IsNullOrWhiteSpace(name)) throw new ArgumentNullException(nameof(name));
+            if (order is null) throw new ArgumentException("Order is empty", nameof(name)); ;
+            if (string.IsNullOrWhiteSpace(name)) throw new ArgumentNullException("Product name is empty", nameof(name));
 
             Product product = _repository.GetByName(name);
 

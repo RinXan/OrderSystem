@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OrderSystem
+﻿namespace OrderSystem
 {
     public class DeliveryOrder : Order
     {
@@ -24,7 +18,6 @@ namespace OrderSystem
             Console.WriteLine($"Delivery price: {DeliveryPrice}");
             Console.WriteLine($"Final total: {finalPrice}");
         }
-
         public override decimal CalculateTotal()
         {
             return base.CalculateTotal() + DeliveryPrice;
