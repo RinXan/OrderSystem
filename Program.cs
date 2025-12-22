@@ -1,4 +1,6 @@
-﻿namespace OrderSystem
+﻿using OrderSystem.Logging;
+
+namespace OrderSystem
 {
     public class Program
     {
@@ -9,32 +11,26 @@
                 string filePath = "D:\\practise\\c#\\OrderSystem\\Infrastructure\\products.txt";
                 
                 IProductRepository productRepository = new FileProductRepository(filePath);
+                ILogger logger = new ConsoleLogger();
 
-                OrderService orderService = new OrderService(productRepository);
+                OrderService orderService = new OrderService(productRepository, logger);
 
                 Order order = new DeliveryOrder(1, 12);
-                Order order2 = new DeliveryOrder(2, 38);
 
                 orderService.AddProductToOrder(order, "Asus ROG");
                 orderService.AddProductToOrder(order, "Acer Aspire 7");
 
-                orderService.AddProductToOrder(order2, "Acer Aspire 7");
-                orderService.AddProductToOrder(order2, "Acer Nitro 5");
-
                 order.SetPaymentMethod(new CardPayment());
-                order2.SetPaymentMethod(new CardPayment());
 
                 bool paymentResult = order.Pay();
-                bool paymentResult2 = order2.Pay();
 
-                if (!paymentResult && !paymentResult2)
+                if (!paymentResult)
                 {
                     Console.WriteLine("Payment failed");
                     return;
                 }
                 
                 order.Process();
-                order2.Process();
 
                 Console.WriteLine("Order completed successfully");
             }
