@@ -8,17 +8,17 @@ namespace OrderSystem
         {
             try
             {
-                string filePath = "D:\\practise\\c#\\OrderSystem\\Infrastructure\\products.txt";
+                string repoPath = "D:\\practise\\c#\\OrderSystem\\Infrastructure\\products.txt";
+                string filePath = "D:\\practise\\c#\\OrderSystem\\Infrastructure\\log.txt";
                 
-                IProductRepository productRepository = new FileProductRepository(filePath);
-                ILogger logger = new ConsoleLogger();
+                IProductRepository productRepository = new FileProductRepository(repoPath);
+                ILogger logger = new FileLogger(filePath);
 
                 OrderService orderService = new OrderService(productRepository, logger);
 
                 Order order = new DeliveryOrder(1, 12);
 
                 orderService.AddProductToOrder(order, "Asus ROG");
-                orderService.AddProductToOrder(order, "Acer Aspire 7");
 
                 order.SetPaymentMethod(new CardPayment());
 
