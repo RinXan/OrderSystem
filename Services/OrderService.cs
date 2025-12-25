@@ -20,8 +20,8 @@ namespace OrderSystem
 
         public void AddProductToOrder(Order order, string name)
         {
-            if (order is null) throw new ArgumentException("Order is empty", nameof(name)); ;
-            if (string.IsNullOrWhiteSpace(name)) throw new ArgumentNullException("Product name is empty", nameof(name));
+            if (order is null) throw new ArgumentNullException("Order is empty", nameof(order)); ;
+            if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("Product name is empty", nameof(name));
 
             _logger.Log($"Trying to add product '{name}'");
 
@@ -35,7 +35,7 @@ namespace OrderSystem
 
             order.AddProduct(product);
 
-            _logger.Log($"Product '{name}' added to order#{order.Id}");
+            _logger.Log($"Product '{name}' added to order #{order.Id}");
         }
     }
 }
