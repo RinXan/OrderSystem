@@ -9,10 +9,10 @@ namespace OrderSystem
             try
             {
                 string repoPath = "D:\\practise\\c#\\OrderSystem\\Infrastructure\\products.txt";
-                string filePath = "D:\\practise\\c#\\OrderSystem\\Infrastructure\\log.txt";
+                //string filePath = "D:\\practise\\c#\\OrderSystem\\Infrastructure\\log.txt";
                 
                 IProductRepository productRepository = new FileProductRepository(repoPath);
-                ILogger logger = new FileLogger(filePath);
+                ILogger logger = new ConsoleLogger();
 
                 OrderService orderService = new OrderService(productRepository, logger);
 

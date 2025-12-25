@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace OrderSystem.Logging
 {
-    public interface ILogger
+    public enum LogLevel
     {
-        void Log(LogLevel level, string  message);
+        Error,
+        Info,
+        Warning
     }
 }

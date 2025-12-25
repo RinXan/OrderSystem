@@ -8,17 +8,16 @@ namespace OrderSystem.Logging
 {
     public class ConsoleLogger : ILogger
     {
-        public void Error(string message)
+        public void Log(LogLevel level, string message)
         {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"[ERROR] {message}");
-            Console.ResetColor();
-        }
-
-        public void Log(string message)
-        {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"[INFO] {message}");
+            switch (level)
+            {
+                case LogLevel.Info: Console.ForegroundColor = ConsoleColor.Green; break;
+                case LogLevel.Warning: Console.ForegroundColor = ConsoleColor.Yellow; break;
+                case LogLevel.Error: Console.ForegroundColor = ConsoleColor.Red; break;
+                default: Console.ForegroundColor = ConsoleColor.White; break;
+            }
+            Console.WriteLine($"[{level}] {message}");
             Console.ResetColor();
         }
     }
